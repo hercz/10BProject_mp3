@@ -10,7 +10,7 @@ public class ID3Tag
 	private String album;
 	private int year;
 	private String comment;
-	private int genre;
+	private String genre;
 
 	private ID3Tag()
 	{
@@ -30,9 +30,27 @@ public class ID3Tag
 	{
 		byte[] last128 = tail(file);
 		byte[] baTitle = readXBytes(last128, 3, 33);
+		byte[] baArtist = readXBytes(last128, 33, 62);
+		byte[] baAlbum = readXBytes(last128, 63, 91);
+		byte[] baYear = readXBytes(last128, 93, 97);
+		byte[] baComment = readXBytes(last128, 97, 126);
+		byte[] baGenre = readXBytes(last128, 127, 128);
+		
+		
 		String title = new String(baTitle).trim();
+		String artist = new String(baArtist).trim();
+		String album = new String(baAlbum).trim();
+		String year = new String(baYear).trim();
+		String comment = new String(baComment).trim();
+		String genre = new String(baGenre).trim();
+		
 		ID3Tag tag = new ID3Tag();
 		tag.setTitle(title);
+		tag.setArtist(artist);
+		tag.setAlbum(album);
+		tag.setYear(Integer.parseInt(year));
+		tag.setComment(comment);
+		tag.setGenre(genre); // to be continue
 		return tag;
 	}
 
@@ -108,12 +126,12 @@ public class ID3Tag
 		this.comment = comment;
 	}
 
-	public int getGenre()
+	public String getGenre()
 	{
 		return genre;
 	}
 
-	public void setGenre(int genre)
+	public void setGenre(String genre)
 	{
 		this.genre = genre;
 	}
@@ -137,8 +155,8 @@ public class ID3Tag
 	@Override
 	public String toString()
 	{
-		return "\nArtist: " + (artist == null ? "NULL" : artist) + "\nAlbum: " + album + "Title: " + title + "\nYear: "
-				+ year + "\nGenre: " + genre;
+		return "\nArtist: " + (artist == null ? "NULL" : artist) + "\nAlbum: " + album + "\nTitle: " + title + "\nYear: "
+				+ year + "\nGenre: " + genre + "\nComment: " + comment;
 	}
 
 	public static void main(String[] args)
