@@ -12,7 +12,11 @@ public class Searcher
 	public Searcher()
 	{
 		searchCriterion.add(new TitleMatcher());
+		searchCriterion.add(new ArtistMatcher());
+		searchCriterion.add(new AlbumMatcher());
 		searchCriterion.add(new YearMatcher());
+		searchCriterion.add(new CommentMatcher());
+		searchCriterion.add(new GenreMatcher());
 
 	}
 
