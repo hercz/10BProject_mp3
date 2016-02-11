@@ -7,10 +7,10 @@ import java.util.HashMap;
  */
 public enum Genre
 {
-	Blues(0, "Blues"), ClassicRock(1, "Classic Rock"), Country(2, "Country"), Dance(3, "Dance"), Disco(4,
-			"Disco"), Funk(5, "Funk"), Grunge(6, "Grunge"), HipHop(7, "Hip-Hop"), Jazz(8, "Jazz"), Metal(9,
-					"Metal"), NewAge(10, "New Age"), Oldies(11, "Oldies"), Other(12, "Other"), Pop(13, "Pop"), RnB(14,
-							"R&B"), Rap(15, "Rap"), Reggae(16, "Reggae"), Rock(17, "Rock"), Techno(18,
+	NULL(-1, "NULL"), Blues(0, "Blues"), ClassicRock(1, "Classic Rock"), Country(2, "Country"), Dance(3,
+			"Dance"), Disco(4, "Disco"), Funk(5, "Funk"), Grunge(6, "Grunge"), HipHop(7, "Hip-Hop"), Jazz(8,
+					"Jazz"), Metal(9, "Metal"), NewAge(10, "New Age"), Oldies(11, "Oldies"), Other(12, "Other"), Pop(13,
+							"Pop"), RnB(14, "R&B"), Rap(15, "Rap"), Reggae(16, "Reggae"), Rock(17, "Rock"), Techno(18,
 									"Techno"), Industrial(19, "Industrial"), Alternative(20, "Alternative"), Ska(21,
 											"Ska"), DeathMetal(22, "Death Metal"), Pranks(23, "Pranks"), Soundtrack(24,
 													"Soundtrack"), EuroTechno(25, "Euro-Techno"), Ambient(26,
@@ -242,7 +242,7 @@ public enum Genre
 		int convertedByte = (id >= 0 ? id : (int) id + 256);
 		if (convertedByte < 0 || convertedByte >= values().length)
 		{
-			return null;
+			return values()[0];
 		}
 		else
 		{

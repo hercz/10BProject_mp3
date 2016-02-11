@@ -32,10 +32,10 @@ public class ID3Tag
 		byte[] last128 = tail(file);
 
 		byte[] baTitle = replaceSpaceBytes(readXBytes(last128, 3, 33));
-		byte[] baArtist = replaceSpaceBytes(readXBytes(last128, 33, 62));
-		byte[] baAlbum = replaceSpaceBytes(readXBytes(last128, 63, 91));
+		byte[] baArtist = replaceSpaceBytes(readXBytes(last128, 33, 63));
+		byte[] baAlbum = replaceSpaceBytes(readXBytes(last128, 63, 93));
 		byte[] baYear = replaceSpaceBytes(readXBytes(last128, 93, 97));
-		byte[] baComment = replaceSpaceBytes(readXBytes(last128, 97, 126));
+		byte[] baComment = replaceSpaceBytes(readXBytes(last128, 97, 127));
 		byte[] baGenre = readXBytes(last128, 127, 128);
 
 		String title = new String(baTitle).trim();
