@@ -8,7 +8,7 @@ public class ID3Tag
 	private String title;
 	private String artist;
 	private String album;
-	private int year;
+	private String year;
 	private String comment;
 	private String genre;
 
@@ -35,22 +35,23 @@ public class ID3Tag
 		byte[] baYear = readXBytes(last128, 93, 97);
 		byte[] baComment = readXBytes(last128, 97, 126);
 		byte[] baGenre = readXBytes(last128, 127, 128);
-		
-		
+
 		String title = new String(baTitle).trim();
 		String artist = new String(baArtist).trim();
 		String album = new String(baAlbum).trim();
 		String year = new String(baYear).trim();
 		String comment = new String(baComment).trim();
-		String genre = new String(baGenre).trim();
-		
+		String genre = new String(Genre.getGenreByByteId(baGenre[0]).toString()).trim();
+
 		ID3Tag tag = new ID3Tag();
+
 		tag.setTitle(title);
 		tag.setArtist(artist);
 		tag.setAlbum(album);
-		tag.setYear(Integer.parseInt(year));
+		tag.setYear(year);
 		tag.setComment(comment);
-		tag.setGenre(genre); // to be continue
+		tag.setGenre(genre);
+
 		return tag;
 	}
 
@@ -106,12 +107,12 @@ public class ID3Tag
 		this.album = album;
 	}
 
-	public int getYear()
+	public String getYear()
 	{
 		return year;
 	}
 
-	public void setYear(int year)
+	public void setYear(String year)
 	{
 		this.year = year;
 	}
@@ -140,10 +141,8 @@ public class ID3Tag
 	public boolean equals(Object o)
 	{
 		ID3Tag tag = (ID3Tag) o;
-		return ((title == null && tag.title == null) || title.equals(tag.title))
-				&& ((artist == null && tag.artist == null) || artist.equals(tag.artist))
-				&& ((album == null && tag.album == null) || album.equals(tag.album)) && (year == tag.year)
-				&& ((comment == null && tag.comment == null) || comment.equals(tag.comment)) && (genre == tag.genre);
+		return title.equals(tag.title) && artist.equals(tag.artist) && album.equals(tag.album) && year.equals(tag.year)
+				&& comment.equals(tag.comment) && genre.equals(tag.genre);
 	}
 
 	@Override
@@ -155,14 +154,11 @@ public class ID3Tag
 	@Override
 	public String toString()
 	{
-		return "\nArtist: " + (artist == null ? "NULL" : artist) + "\nAlbum: " + album + "\nTitle: " + title + "\nYear: "
-				+ year + "\nGenre: " + genre + "\nComment: " + comment;
+
+		return "Artist: " + (artist.equals("") ? "NULL" : artist) + "\nAlbum: " + (album.equals("") ? "NULL" : album)
+				+ "\nTitle: " + (title.equals("") ? "NULL" : title) + "\nYear: " + (year.equals("") ? "NULL" : year)
+				+ "\nGenre: " + (genre.equals("") ? "NULL" : genre) + "\nComment: "
+				+ (comment.equals("") ? "NULL" : comment) + "\n";
 	}
 
-	public static void main(String[] args)
-	{
-		ID3Tag tag1 = ID3Tag
-				.parse(new File("c:" + File.separator + "mp3" + File.separator + "Robin Schulz - Sugar (Radio Edit)"));
-		System.out.println(tag1);
-	}
 }
