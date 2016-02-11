@@ -31,11 +31,11 @@ public class ID3Tag
 
 		byte[] last128 = tail(file);
 
-		byte[] baTitle = replaceSpaceBytes(readXBytes(last128, 3, 33));
-		byte[] baArtist = replaceSpaceBytes(readXBytes(last128, 33, 63));
-		byte[] baAlbum = replaceSpaceBytes(readXBytes(last128, 63, 93));
-		byte[] baYear = replaceSpaceBytes(readXBytes(last128, 93, 97));
-		byte[] baComment = replaceSpaceBytes(readXBytes(last128, 97, 127));
+		byte[] baTitle = readXBytes(last128, 3, 33);
+		byte[] baArtist = readXBytes(last128, 33, 63);
+		byte[] baAlbum = readXBytes(last128, 63, 93);
+		byte[] baYear = readXBytes(last128, 93, 97);
+		byte[] baComment = readXBytes(last128, 97, 127);
 		byte[] baGenre = readXBytes(last128, 127, 128);
 
 		String title = new String(baTitle).trim();
@@ -57,19 +57,19 @@ public class ID3Tag
 		return tag;
 	}
 
-	private static byte[] replaceSpaceBytes(byte[] tagPortion)
-	{
-		for (int i = 0; i < tagPortion.length; i++)
-		{
-			byte space = 32;
-			byte byteNull = 0;
-			if (tagPortion[i] == space)
-			{
-				tagPortion[i] = byteNull;
-			}
-		}
-		return tagPortion;
-	}
+	// private static byte[] replaceSpaceBytes(byte[] tagPortion)
+	// {
+	// for (int i = 0; i < tagPortion.length; i++)
+	// {
+	// byte space = 32;
+	// byte byteNull = 0;
+	// if (tagPortion[i] == space)
+	// {
+	// tagPortion[i] = byteNull;
+	// }
+	// }
+	// return tagPortion;
+	// }
 
 	public static byte[] tail(File file)
 	{
@@ -159,12 +159,6 @@ public class ID3Tag
 		ID3Tag tag = (ID3Tag) o;
 		return title.equals(tag.title) && artist.equals(tag.artist) && album.equals(tag.album) && year.equals(tag.year)
 				&& comment.equals(tag.comment) && genre.equals(tag.genre);
-	}
-
-	@Override
-	public int hashCode()
-	{
-		return -1;
 	}
 
 	@Override
