@@ -28,12 +28,14 @@ public class ID3Tag
 
 	public static ID3Tag parse(File file)
 	{
+
 		byte[] last128 = tail(file);
-		byte[] baTitle = readXBytes(last128, 3, 33);
-		byte[] baArtist = readXBytes(last128, 33, 62);
-		byte[] baAlbum = readXBytes(last128, 63, 91);
-		byte[] baYear = readXBytes(last128, 93, 97);
-		byte[] baComment = readXBytes(last128, 97, 126);
+
+		byte[] baTitle = replaceSpaceBytes(readXBytes(last128, 3, 33));
+		byte[] baArtist = replaceSpaceBytes(readXBytes(last128, 33, 62));
+		byte[] baAlbum = replaceSpaceBytes(readXBytes(last128, 63, 91));
+		byte[] baYear = replaceSpaceBytes(readXBytes(last128, 93, 97));
+		byte[] baComment = replaceSpaceBytes(readXBytes(last128, 97, 126));
 		byte[] baGenre = readXBytes(last128, 127, 128);
 
 		String title = new String(baTitle).trim();
@@ -53,6 +55,20 @@ public class ID3Tag
 		tag.setGenre(genre);
 
 		return tag;
+	}
+
+	private static byte[] replaceSpaceBytes(byte[] tagPortion)
+	{
+		for (int i = 0; i < tagPortion.length; i++)
+		{
+			byte space = 32;
+			byte byteNull = 0;
+			if (tagPortion[i] == space)
+			{
+				tagPortion[i] = byteNull;
+			}
+		}
+		return tagPortion;
 	}
 
 	public static byte[] tail(File file)

@@ -108,7 +108,99 @@ public enum Genre
 																																																																																																																	78,
 																																																																																																																	"Rock & Roll"), HardRock(
 																																																																																																																			79,
-																																																																																																																			"Hard Rock");
+																																																																																																																			"Hard Rock"), Folk(
+																																																																																																																					80,
+																																																																																																																					"Folk"), FolkRock(
+																																																																																																																							81,
+																																																																																																																							"Folk-Rock"), NationalFolk(
+																																																																																																																									82,
+																																																																																																																									"National Folk"), Swing(
+																																																																																																																											83,
+																																																																																																																											"Swing"), FastFusion(
+																																																																																																																													84,
+																																																																																																																													"Fast Fusion"), Bebop(
+																																																																																																																															85,
+																																																																																																																															"Bebop"), Latin(
+																																																																																																																																	86,
+																																																																																																																																	"Latin"), Revival(
+																																																																																																																																			87,
+																																																																																																																																			"Revival"), Celtic(
+																																																																																																																																					88,
+																																																																																																																																					"Celtic"), Bluegrass(
+																																																																																																																																							89,
+																																																																																																																																							"Bluegrass"), Avantgarde(
+																																																																																																																																									90,
+																																																																																																																																									"Avantgarde"), GothicRock(
+																																																																																																																																											91,
+																																																																																																																																											"Gothic Rock"), ProgressiveRock(
+																																																																																																																																													92,
+																																																																																																																																													"Progressive Rock"), PsychedelicRock(
+																																																																																																																																															93,
+																																																																																																																																															"Psychedelic Rock"), SymphonicRock(
+																																																																																																																																																	94,
+																																																																																																																																																	"Symphonic Rock"), SlowRock(
+																																																																																																																																																			95,
+																																																																																																																																																			"Slow Rock"), BigBand(
+																																																																																																																																																					96,
+																																																																																																																																																					"Big Band"), Chorus(
+																																																																																																																																																							97,
+																																																																																																																																																							"Chorus"), EasyListening(
+																																																																																																																																																									98,
+																																																																																																																																																									"Easy Listening"), Acoustic(
+																																																																																																																																																											99,
+																																																																																																																																																											"Acoustic"), Humour(
+																																																																																																																																																													100,
+																																																																																																																																																													"Humour"), Speech(
+																																																																																																																																																															101,
+																																																																																																																																																															"Speech"), Chanson(
+																																																																																																																																																																	102,
+																																																																																																																																																																	"Chanson"), Opera(
+																																																																																																																																																																			103,
+																																																																																																																																																																			"Opera"), ChamberMusic(
+																																																																																																																																																																					104,
+																																																																																																																																																																					"Chamber Music"), Sonata(
+																																																																																																																																																																							105,
+																																																																																																																																																																							"Sonata"), Symphony(
+																																																																																																																																																																									106,
+																																																																																																																																																																									"Symphony"), BootyBass(
+																																																																																																																																																																											107,
+																																																																																																																																																																											"Booty Bass"), Primus(
+																																																																																																																																																																													108,
+																																																																																																																																																																													"Primus"), PornGroove(
+																																																																																																																																																																															109,
+																																																																																																																																																																															"Porn Groove"), Satire(
+																																																																																																																																																																																	110,
+																																																																																																																																																																																	"Satire"), SlowJam(
+																																																																																																																																																																																			111,
+																																																																																																																																																																																			"Slow Jam"), Club(
+																																																																																																																																																																																					112,
+																																																																																																																																																																																					"Club"), Tango(
+																																																																																																																																																																																							113,
+																																																																																																																																																																																							"Tango"), Samba(
+																																																																																																																																																																																									114,
+																																																																																																																																																																																									"Samba"), Folklore(
+																																																																																																																																																																																											115,
+																																																																																																																																																																																											"Folklore"), Ballad(
+																																																																																																																																																																																													116,
+																																																																																																																																																																																													"Ballad"), PowerBallad(
+																																																																																																																																																																																															117,
+																																																																																																																																																																																															"Power Ballad"), RhytmicSoul(
+																																																																																																																																																																																																	118,
+																																																																																																																																																																																																	"Rhythmic Soul"), Freestyle(
+																																																																																																																																																																																																			119,
+																																																																																																																																																																																																			"Freestyle"), Duet(
+																																																																																																																																																																																																					120,
+																																																																																																																																																																																																					"Duet"), PunkRock(
+																																																																																																																																																																																																							121,
+																																																																																																																																																																																																							"Punk Rock"), DrumSolo(
+																																																																																																																																																																																																									122,
+																																																																																																																																																																																																									"Drum Solo"), ACapella(
+																																																																																																																																																																																																											123,
+																																																																																																																																																																																																											"A capella"), EuroHouse(
+																																																																																																																																																																																																													124,
+																																																																																																																																																																																																													"Euro-House"), DanceHall(
+																																																																																																																																																																																																															125,
+																																																																																																																																																																																																															"Dance Hall");
 
 	private int id;
 	private String name;
