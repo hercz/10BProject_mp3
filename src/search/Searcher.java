@@ -27,11 +27,14 @@ public class Searcher
 		{
 			if (matcher.matches(pattern, tag))
 			{
+				System.out.println(file);
 				return true;
+
 			}
 
 			if (isSearchFileName && file.getName().contains(pattern))
 			{
+				System.out.println(file);
 				return true;
 			}
 		}
