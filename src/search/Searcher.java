@@ -32,11 +32,11 @@ public class Searcher
 	public void getConsole()
 	{
 		String no = "no";
-		int maxSize = 5;
+		int maxSize = searchCriterion.size();
 		int deleteCounter = 0;
 
 		System.out.println("Would you like to choose any searching options? [yes/no]");
-		String defaultSearchAnswer = console.next();
+		String defaultSearchAnswer = console.nextLine();
 
 		if (defaultSearchAnswer.equals("yes"))
 		{
@@ -52,7 +52,7 @@ public class Searcher
 			String titleAnswer = console.nextLine();
 			if (titleAnswer.equals(no))
 			{
-				searchCriterion.remove(maxSize - 5);
+				searchCriterion.remove(maxSize - maxSize);
 				deleteCounter += 1;
 
 			}
@@ -96,6 +96,7 @@ public class Searcher
 				searchCriterion.remove(maxSize - deleteCounter); // 5
 			}
 		}
+		console.close();
 
 	}
 
@@ -111,11 +112,11 @@ public class Searcher
 
 			}
 
-			// if (isSearchFileName && file.getName().contains(pattern))
-			// {
-			// System.out.println(file);
-			// return true;
-			// }
+			if (isSearchFileName && file.getName().contains(pattern))
+			{
+				System.out.println(file);
+				return true;
+			}
 		}
 		return false;
 	}
