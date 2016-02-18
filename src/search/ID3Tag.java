@@ -11,7 +11,7 @@ public class ID3Tag
 	private String year;
 	private String comment;
 	private String genre;
-	private byte[] genreByte;
+	private int genreIndex;
 
 	private ID3Tag()
 	{
@@ -38,13 +38,14 @@ public class ID3Tag
 		byte[] baYear = readXBytes(last128, 93, 97);
 		byte[] baComment = readXBytes(last128, 97, 127);
 		byte[] baGenre = readXBytes(last128, 127, 128);
+		int intGenre = baGenre[0];
 
 		String title = new String(baTitle).trim();
 		String artist = new String(baArtist).trim();
 		String album = new String(baAlbum).trim();
 		String year = new String(baYear).trim();
 		String comment = new String(baComment).trim();
-		String genre = new String(Genre.getGenreByByteId(baGenre[0]).toString()).trim();
+		String genre = new String(Genre.getGenreByByteId(intGenre).toString()).trim();
 
 		ID3Tag tag = new ID3Tag();
 
@@ -54,7 +55,7 @@ public class ID3Tag
 		tag.setYear(year);
 		tag.setComment(comment);
 		tag.setGenre(genre);
-		tag.setGenreByte(baGenre);
+		tag.setGenreIndex(intGenre);
 
 		return tag;
 	}
@@ -141,14 +142,14 @@ public class ID3Tag
 		this.genre = genre;
 	}
 
-	public byte getGenreByte()
+	public int getGenreIndex()
 	{
-		return genreByte[0];
+		return genreIndex;
 	}
 
-	public void setGenreByte(byte[] genreByte)
+	public void setGenreIndex(int genreIndex)
 	{
-		this.genreByte = genreByte;
+		this.genreIndex = genreIndex;
 	}
 
 	@Override
@@ -165,7 +166,7 @@ public class ID3Tag
 
 		return "Artist: " + (artist.equals("") ? "NULL" : artist) + "\nAlbum: " + (album.equals("") ? "NULL" : album)
 				+ "\nTitle: " + (title.equals("") ? "NULL" : title) + "\nYear: " + (year.equals("") ? "NULL" : year)
-				+ "\nGenre: " + (genre.equals("") ? "NULL" : genre) + "\nGenrebyte: " + genreByte[0] + "\nComment: "
+				+ "\nGenre: " + (genre.equals("") ? "NULL" : genre) + "\nGenreindex: " + genreIndex + "\nComment: "
 				+ (comment.equals("") ? "NULL" : comment) + "\n";
 	}
 

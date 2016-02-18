@@ -8,6 +8,7 @@ public class Test
 	public static void main(String[] args)
 	{
 
+		new Genre();
 		Searcher s = new Searcher();
 
 		// when we search in everything
