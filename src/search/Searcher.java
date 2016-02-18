@@ -61,7 +61,7 @@ public class Searcher
 			String artistAnswer = console.nextLine();
 			if (artistAnswer.equals(no))
 			{
-				searchCriterion.remove(maxSize - 4 - deleteCounter); // 1
+				searchCriterion.remove(maxSize - 5 - deleteCounter); // 1
 				deleteCounter += 1;
 			}
 
@@ -69,7 +69,7 @@ public class Searcher
 			String albumAnswer = console.nextLine();
 			if (albumAnswer.equals(no))
 			{
-				searchCriterion.remove(maxSize - 3 - deleteCounter); // 2
+				searchCriterion.remove(maxSize - 4 - deleteCounter); // 2
 				deleteCounter += 1;
 			}
 
@@ -77,7 +77,7 @@ public class Searcher
 			String yearAnswer = console.nextLine();
 			if (yearAnswer.equals(no))
 			{
-				searchCriterion.remove(maxSize - 2 - deleteCounter); // 3
+				searchCriterion.remove(maxSize - 3 - deleteCounter); // 3
 				deleteCounter += 1;
 			}
 
@@ -85,7 +85,7 @@ public class Searcher
 			String commentAnswer = console.nextLine();
 			if (commentAnswer.equals(no))
 			{
-				searchCriterion.remove(maxSize - 1 - deleteCounter); // 4
+				searchCriterion.remove(maxSize - 2 - deleteCounter); // 4
 				deleteCounter += 1;
 			}
 
@@ -93,7 +93,7 @@ public class Searcher
 			String genreAnswer = console.nextLine();
 			if (genreAnswer.equals(no))
 			{
-				searchCriterion.remove(maxSize - deleteCounter); // 5
+				searchCriterion.remove(maxSize - 1 - deleteCounter); // 5
 			}
 		}
 		console.close();

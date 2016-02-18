@@ -10,19 +10,16 @@ public class ExampleFileListCreator
 
 	private ExampleFileListCreator()
 	{
-		mp3files.add(new File("music\\01-infected_mushroom-pink_nightmares.mp3"));
-		mp3files.add(new File("music\\01-moby_-_lift_me_up_(indra_remix)-2006-psychedelic.mp3"));
-		mp3files.add(new File("music\\02-1200_micrograms_-_numberstruck-ncr.mp3"));
-		mp3files.add(new File("music\\03 Gatimo - Psytisfaction.mp3"));
-		mp3files.add(new File("music\\03-braincell_-_discovered_by_aliens-upe.mp3"));
-		mp3files.add(new File("music\\04-alternative_control_-_logic_choise-mycel.mp3"));
-		mp3files.add(new File("music\\05-alternative_control_-_alt_plus_ctrl-mycel.mp3"));
-		mp3files.add(new File("music\\05-tesla_principle-soul_river.mp3"));
-		mp3files.add(new File("music\\05. zDay - V.V.V.V.V.mp3"));
-		mp3files.add(new File("music\\06 - Energize.mp3"));
-		mp3files.add(new File("music\\07-cosmo_chaos_-_design_of_a_shiny_mind-upe.mp3"));
-		mp3files.add(new File("music\\08. Spectral Seagulls.mp3"));
-		mp3files.add(new File("music\\3 Hope Was Closed.mp3"));
+		mp3files.add(new File("music\\1.mp3"));
+		mp3files.add(new File("music\\2.mp3"));
+		mp3files.add(new File("music\\3.mp3"));
+		mp3files.add(new File("music\\4.mp3"));
+		mp3files.add(new File("music\\5.mp3"));
+		mp3files.add(new File("music\\6.mp3"));
+		mp3files.add(new File("music\\7.mp3"));
+		mp3files.add(new File("music\\8.mp3"));
+		mp3files.add(new File("music\\9.mp3"));
+		mp3files.add(new File("music\\10.mp3"));
 	}
 
 	public static List<File> getList()

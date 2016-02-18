@@ -11,6 +11,7 @@ public class ID3Tag
 	private String year;
 	private String comment;
 	private String genre;
+	private byte[] genreByte;
 
 	private ID3Tag()
 	{
@@ -53,23 +54,10 @@ public class ID3Tag
 		tag.setYear(year);
 		tag.setComment(comment);
 		tag.setGenre(genre);
+		tag.setGenreByte(baGenre);
 
 		return tag;
 	}
-
-	// private static byte[] replaceSpaceBytes(byte[] tagPortion)
-	// {
-	// for (int i = 0; i < tagPortion.length; i++)
-	// {
-	// byte space = 32;
-	// byte byteNull = 0;
-	// if (tagPortion[i] == space)
-	// {
-	// tagPortion[i] = byteNull;
-	// }
-	// }
-	// return tagPortion;
-	// }
 
 	public static byte[] tail(File file)
 	{
@@ -153,6 +141,16 @@ public class ID3Tag
 		this.genre = genre;
 	}
 
+	public byte getGenreByte()
+	{
+		return genreByte[0];
+	}
+
+	public void setGenreByte(byte[] genreByte)
+	{
+		this.genreByte = genreByte;
+	}
+
 	@Override
 	public boolean equals(Object o)
 	{
@@ -167,7 +165,7 @@ public class ID3Tag
 
 		return "Artist: " + (artist.equals("") ? "NULL" : artist) + "\nAlbum: " + (album.equals("") ? "NULL" : album)
 				+ "\nTitle: " + (title.equals("") ? "NULL" : title) + "\nYear: " + (year.equals("") ? "NULL" : year)
-				+ "\nGenre: " + (genre.equals("") ? "NULL" : genre) + "\nComment: "
+				+ "\nGenre: " + (genre.equals("") ? "NULL" : genre) + "\nGenrebyte: " + genreByte[0] + "\nComment: "
 				+ (comment.equals("") ? "NULL" : comment) + "\n";
 	}
 
