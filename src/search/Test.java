@@ -9,18 +9,37 @@ public class Test
 	{
 
 		new Genre();
-		Searcher s = new Searcher();
-
-		// when we search in everything
-		String searchingFor = s.getSearchCriterium();
-		s.getConsole();
-		int matchesCounter = 0;
+		ConsoleManager console = new ConsoleManager();
+		Searcher searcher = new Searcher();
 		List<File> mp3files = ExampleFileListCreator.getList();
-		for (int i = 0; i < mp3files.size(); i++)
+
+		console.setSearchCriteria();
+		System.out.println(console.getDefaultLine());
+		console.setAnswerSwitcher();
+
+		int maxListSize = searcher.getListSize();
+		if (console.isAnswerSwitcherYes())
 		{
-			File mp3 = mp3files.get(i);
-			if (s.matches(searchingFor, mp3))
+			for (int i = 0; i < maxListSize; i++)
 			{
+				int j = searcher.getListSize();
+				console.setQuestionLine(i);
+				System.out.println(console.getQuestionLine());
+				console.setAnswer();
+				if (console.isAnswerNo())
+				{
+					searcher.deleteListElement(i + j - maxListSize);
+				}
+			}
+		}
+		console.closeConsole();
+
+		int matchesCounter = 0;
+		for (File file : mp3files)
+		{
+			if (searcher.matches(console.getSearchCriteria(), file))
+			{
+				System.out.println(file.getName());
 				matchesCounter += 1;
 			}
 		}

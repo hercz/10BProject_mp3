@@ -5,6 +5,7 @@ import java.io.RandomAccessFile;
 
 public class ID3Tag
 {
+	private String fileName;
 	private String title;
 	private String artist;
 	private String album;
@@ -49,6 +50,7 @@ public class ID3Tag
 
 		ID3Tag tag = new ID3Tag();
 
+		tag.setFileName(file.getName());
 		tag.setTitle(title);
 		tag.setArtist(artist);
 		tag.setAlbum(album);
@@ -80,6 +82,16 @@ public class ID3Tag
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public String getFileName()
+	{
+		return fileName;
+	}
+
+	public void setFileName(String fileName)
+	{
+		this.fileName = fileName;
 	}
 
 	public String getTitle()
