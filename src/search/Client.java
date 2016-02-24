@@ -38,22 +38,14 @@ public class Client {
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
 
-		String javatatlanKezekHost = "192.168.0.1";
-		int javatatlanKezekPort = 1234;
+		String ponyHost = "192.168.0.1";
+		int ponyPort = 1234;
 
 		Commands command = Commands.SEARCH;
 		Object objectToSend = Helper.vmi();
 
-		if (command.equals(Commands.CATEGORYBYTAG)) {
-			Client.setHostAndPort("localhost", 1234);
-			send(oos, objectToSend);
-		}
-		if (command.equals(Commands.SPLITMP3)) {
-			Client.setHostAndPort(javatatlanKezekHost, javatatlanKezekPort);
-			send(oos, objectToSend);
-		}
-		if (command.equals(Commands.SORTBYTAG)) {
-			Client.setHostAndPort(javatatlanKezekHost, javatatlanKezekPort);
+		if (command.equals(Commands.SEARCH)) {
+			Client.setHostAndPort(ponyHost, ponyPort);
 			send(oos, objectToSend);
 		}
 
