@@ -17,18 +17,18 @@ public class Test
 		System.out.println(console.getDefaultLine());
 		console.setAnswerSwitcher();
 
-		int maxListSize = searcher.getListSize();
+		int maxListSize = searcher.getMatcherListSize();
 		if (console.isAnswerSwitcherYes())
 		{
 			for (int i = 0; i < maxListSize; i++)
 			{
-				int j = searcher.getListSize();
+				int j = searcher.getMatcherListSize();
 				console.setQuestionLine(i);
 				System.out.println(console.getQuestionLine());
 				console.setAnswer();
 				if (console.isAnswerNo())
 				{
-					searcher.deleteListElement(i + j - maxListSize);
+					searcher.deleteMatcherListElement(i + j - maxListSize);
 				}
 			}
 		}

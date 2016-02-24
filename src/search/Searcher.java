@@ -6,24 +6,24 @@ import java.util.List;
 
 public class Searcher
 {
-	private List<Matcher> searchCriterion = new ArrayList<Matcher>();
+	private List<Matcher> matcherList = new ArrayList<Matcher>();
 
 	public Searcher()
 	{
-		searchCriterion.add(new FileNameMatcher());
-		searchCriterion.add(new TitleMatcher());
-		searchCriterion.add(new ArtistMatcher());
-		searchCriterion.add(new AlbumMatcher());
-		searchCriterion.add(new YearMatcher());
-		searchCriterion.add(new CommentMatcher());
-		searchCriterion.add(new GenreMatcher());
+		matcherList.add(new FileNameMatcher());
+		matcherList.add(new TitleMatcher());
+		matcherList.add(new ArtistMatcher());
+		matcherList.add(new AlbumMatcher());
+		matcherList.add(new YearMatcher());
+		matcherList.add(new CommentMatcher());
+		matcherList.add(new GenreMatcher());
 
 	}
 
 	public boolean matches(String pattern, File file)
 	{
 		ID3Tag tag = ID3Tag.parse(file);
-		for (Matcher matcher : searchCriterion)
+		for (Matcher matcher : matcherList)
 		{
 			if (matcher.matches(pattern, tag))
 			{
@@ -33,18 +33,18 @@ public class Searcher
 		return false;
 	}
 
-	public void deleteListElement(int index)
+	public void deleteMatcherListElement(int index)
 	{
-		searchCriterion.remove(index);
+		matcherList.remove(index);
 	}
 
-	public List<Matcher> getSearchCriterion()
+	public List<Matcher> getMatcherList()
 	{
-		return searchCriterion;
+		return matcherList;
 	}
 
-	public int getListSize()
+	public int getMatcherListSize()
 	{
-		return searchCriterion.size();
+		return matcherList.size();
 	}
 }
