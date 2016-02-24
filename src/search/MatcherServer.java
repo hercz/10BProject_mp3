@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 
 public class MatcherServer
 {
-	private static Map<File, ID3Tag> hashMap = new HashMap<File, ID3Tag>();
+	private static Map<File, byte[]> hashMap = new HashMap<File, byte[]>();
 	String pattern;
 	private static List<File> result = new ArrayList<File>();
 
@@ -38,7 +38,7 @@ public class MatcherServer
 
 					if (object instanceof Map)
 					{
-						hashMap = (Map<File, ID3Tag>) object;
+						hashMap = (Map<File, byte[]>) object;
 					}
 					else if (object instanceof String)
 					{
@@ -46,9 +46,9 @@ public class MatcherServer
 					}
 					else if (object instanceof Search && ((Search) object) == Search.DEFAULT)
 					{
-						for (Entry<File, ID3Tag> entry : hashMap.entrySet())
+						for (Entry<File, byte[]> entry : hashMap.entrySet())
 						{
-							if (searcher.matches(pattern, entry.getValue()))
+							if (searcher.matches(pattern, ID3Tag.parse(entry.getValue(), entry.getKey())))
 							{
 								result.add(entry.getKey());
 							}
@@ -59,7 +59,7 @@ public class MatcherServer
 					{
 
 					}
-					else if (object instanceof Map)
+					else if (object instanceof List)
 					{
 
 					}

@@ -13,7 +13,6 @@ public class ID3Tag implements Serializable
 	private String year;
 	private String comment;
 	private String genre;
-	private int genreIndex;
 
 	private ID3Tag()
 	{
@@ -29,11 +28,12 @@ public class ID3Tag implements Serializable
 		return resultArray;
 	}
 
-	public static ID3Tag parse(File file)
+	public static ID3Tag parse(byte[] tail, File file)
 	{
 		new Genre();
 
-		byte[] last128 = tail(file);
+		// byte[] last128 = tail(file);
+		byte[] last128 = tail;
 
 		byte[] baTitle = readXBytes(last128, 3, 33);
 		byte[] baArtist = readXBytes(last128, 33, 63);
@@ -59,7 +59,6 @@ public class ID3Tag implements Serializable
 		tag.setYear(year);
 		tag.setComment(comment);
 		tag.setGenre(genre);
-		tag.setGenreIndex(intGenre);
 
 		return tag;
 	}
@@ -156,16 +155,6 @@ public class ID3Tag implements Serializable
 		this.genre = genre;
 	}
 
-	public int getGenreIndex()
-	{
-		return genreIndex;
-	}
-
-	public void setGenreIndex(int genreIndex)
-	{
-		this.genreIndex = genreIndex;
-	}
-
 	@Override
 	public boolean equals(Object o)
 	{
@@ -180,7 +169,7 @@ public class ID3Tag implements Serializable
 
 		return "Artist: " + (artist.equals("") ? "NULL" : artist) + "\nAlbum: " + (album.equals("") ? "NULL" : album)
 				+ "\nTitle: " + (title.equals("") ? "NULL" : title) + "\nYear: " + (year.equals("") ? "NULL" : year)
-				+ "\nGenre: " + (genre.equals("") ? "NULL" : genre) + "\nGenreindex: " + genreIndex + "\nComment: "
+				+ "\nGenre: " + (genre.equals("") ? "NULL" : genre) + "\nComment: "
 				+ (comment.equals("") ? "NULL" : comment) + "\n";
 	}
 
