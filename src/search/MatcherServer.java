@@ -5,18 +5,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class MatcherServer
 {
-	static Map<File, ID3Tag> hashMap = new HashMap<File, ID3Tag>();
+	private static Map<File, ID3Tag> hashMap = new HashMap<File, ID3Tag>();
 	String pattern;
+	private static List<File> result = new ArrayList<File>();
 
 	MatcherServer()
 	{
-
+		Searcher searcher = new Searcher();
 		try
 		{
 			ServerSocket serverSocket = new ServerSocket(1234);
@@ -41,15 +44,18 @@ public class MatcherServer
 					{
 						pattern = (String) object;
 					}
-					else if (object instanceof Commands && ((Commands) object) == Commands.DEFAULT)
+					else if (object instanceof Search && ((Search) object) == Search.DEFAULT)
 					{
 						for (Entry<File, ID3Tag> entry : hashMap.entrySet())
 						{
-							System.out.println("Key: \n" + entry.getKey() + "\nValues:\n" + entry.getValue());
+							if (searcher.matches(pattern, entry.getValue()))
+							{
+								result.add(entry.getKey());
+							}
 						}
 
 					}
-					else if (object instanceof Commands && ((Commands) object) == Commands.CUSTOM)
+					else if (object instanceof Search && ((Search) object) == Search.CUSTOM)
 					{
 
 					}
@@ -57,9 +63,9 @@ public class MatcherServer
 					{
 
 					}
-					else if (object instanceof Commands && ((Commands) object) == Commands.GET)
+					else if (object instanceof Search && ((Search) object) == Search.GET)
 					{
-
+						oos.writeObject(result);
 					}
 				}
 			}

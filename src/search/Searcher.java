@@ -1,6 +1,5 @@
 package search;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +19,8 @@ public class Searcher
 
 	}
 
-	public boolean matches(String pattern, File file)
+	public boolean matches(String pattern, ID3Tag tag)
 	{
-		ID3Tag tag = ID3Tag.parse(file);
 		for (Matcher matcher : matcherList)
 		{
 			if (matcher.matches(pattern, tag))

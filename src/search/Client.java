@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Client
@@ -45,7 +46,7 @@ public class Client
 		// ide jönnek a segéd metódusok...
 	}
 
-	public static void main(String[] args) throws UnknownHostException, IOException
+	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException
 	{
 
 		// String ponyHost = "192.168.0.1";
@@ -88,15 +89,12 @@ public class Client
 
 			// Step 3: send yout hashmap to server
 			send(oos, hashMap);
-
 			// Step 4: Send your search criterium
-			// send(oos, "Fill this String");
-
+			send(oos, "pattern");
 			// Step 5: choose your option: default or custom search
-			send(oos, Commands.DEFAULT);
+			send(oos, Search.DEFAULT);
 			// or
-			// send(oos, Commands.CUSTOM);
-
+			// send(oos, Search.CUSTOM);
 			// Step 5.1: if custom search, fill the hashmap with boolean values
 			// Map<String, Boolean> criteria = new HashMap<String, Boolean>();
 			// criteria.put("File name", true);
@@ -111,7 +109,19 @@ public class Client
 			// send(oos, criteria);
 
 			// Step 6: send a command to get your result(s)
-			// send(oos, Commands.GET);
+			send(oos, Search.GET);
+			try
+			{
+				List<File> result = (List<File>) ois.readObject();
+				for (File file : result)
+				{
+					System.out.println(file);
+				}
+			}
+			catch (ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
 			socket.close();
 
 		}

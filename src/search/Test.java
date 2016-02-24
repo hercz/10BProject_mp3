@@ -34,16 +34,16 @@ public class Test
 		}
 		console.closeConsole();
 
-		int matchesCounter = 0;
-		for (File file : mp3files)
-		{
-			if (searcher.matches(console.getSearchCriteria(), file))
-			{
-				System.out.println(file.getName());
-				matchesCounter += 1;
-			}
-		}
-		System.out.printf("\nCount: %d", matchesCounter);
+		// int matchesCounter = 0;
+		// for (File file : mp3files)
+		// {
+		// if (searcher.matches(console.getSearchCriteria(), file))
+		// {
+		// System.out.println(file.getName());
+		// matchesCounter += 1;
+		// }
+		// }
+		// System.out.printf("\nCount: %d", matchesCounter);
 
 	}
 
