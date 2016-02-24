@@ -2,8 +2,9 @@ package search;
 
 import java.io.File;
 import java.io.RandomAccessFile;
+import java.io.Serializable;
 
-public class ID3Tag
+public class ID3Tag implements Serializable
 {
 	private String fileName;
 	private String title;
@@ -30,6 +31,7 @@ public class ID3Tag
 
 	public static ID3Tag parse(File file)
 	{
+		new Genre();
 
 		byte[] last128 = tail(file);
 

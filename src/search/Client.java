@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Client
 {
@@ -47,7 +48,8 @@ public class Client
 	public static void main(String[] args) throws UnknownHostException, IOException
 	{
 
-		String ponyHost = "192.168.0.1";
+		// String ponyHost = "192.168.0.1";
+		String ponyHost = "localhost";
 		int ponyPort = 1234;
 
 		Commands command = Commands.SEARCH;
@@ -72,7 +74,7 @@ public class Client
 
 			// Step 2: Create a hashmap and put your file references into keys
 			// and ID3tags into values
-			HashMap<File, ID3Tag> hashMap = new HashMap<File, ID3Tag>();
+			Map<File, ID3Tag> hashMap = new HashMap<File, ID3Tag>();
 			hashMap.put(f1, ID3Tag.parse(f1));
 			hashMap.put(f2, ID3Tag.parse(f2));
 			hashMap.put(f3, ID3Tag.parse(f3));
@@ -88,28 +90,29 @@ public class Client
 			send(oos, hashMap);
 
 			// Step 4: Send your search criterium
-			send(oos, "Fill this String");
+			// send(oos, "Fill this String");
 
 			// Step 5: choose your option: default or custom search
 			send(oos, Commands.DEFAULT);
 			// or
-			send(oos, Commands.CUSTOM);
+			// send(oos, Commands.CUSTOM);
 
 			// Step 5.1: if custom search, fill the hashmap with boolean values
-			HashMap<String, Boolean> criteria = new HashMap<String, Boolean>();
-			criteria.put("File name", true);
-			criteria.put("Title", true);
-			criteria.put("Artist", true);
-			criteria.put("Album", true);
-			criteria.put("Year", true);
-			criteria.put("Comment", true);
-			criteria.put("Genre", true);
+			// Map<String, Boolean> criteria = new HashMap<String, Boolean>();
+			// criteria.put("File name", true);
+			// criteria.put("Title", true);
+			// criteria.put("Artist", true);
+			// criteria.put("Album", true);
+			// criteria.put("Year", true);
+			// criteria.put("Comment", true);
+			// criteria.put("Genre", true);
 
 			// Step 5.2: send your criteria in case of custom search
-			send(oos, criteria);
+			// send(oos, criteria);
 
 			// Step 6: send a command to get your result(s)
-			send(oos, Commands.GET);
+			// send(oos, Commands.GET);
+			socket.close();
 
 		}
 
