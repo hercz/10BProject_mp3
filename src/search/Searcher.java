@@ -13,7 +13,13 @@ public class Searcher
 	static Map<ID3TagProperty, Matcher> matcherMap = new HashMap<>();
 
 	static {
+
+		matcherMap.put(ID3TagProperty.FILENAME, new FileNameMatcher());
 		matcherMap.put(ID3TagProperty.TITLE, new TitleMatcher());
+		matcherMap.put(ID3TagProperty.ARTIST, new ArtistMatcher());
+		matcherMap.put(ID3TagProperty.ALBUM, new AlbumMatcher());
+		matcherMap.put(ID3TagProperty.YEAR, new YearMatcher());
+		matcherMap.put(ID3TagProperty.GENRE, new GenreMatcher());
 	}
 
 	public Searcher(Set<ID3TagProperty> criteriaSet) {
