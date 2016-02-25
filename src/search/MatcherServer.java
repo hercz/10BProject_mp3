@@ -39,39 +39,32 @@ public class MatcherServer
 					if (object instanceof Map)
 					{
 						hashMap = (Map<File, byte[]>) object;
-					}
-					else if (object instanceof String)
+					} else if (object instanceof String)
 					{
 						pattern = (String) object;
-					}
-					else if (object instanceof Search && ((Search) object) == Search.DEFAULT)
+					} else if (object instanceof Search && ((Search) object) == Search.DEFAULT)
 					{
 						for (Entry<File, byte[]> entry : hashMap.entrySet())
 						{
 							if (searcher.matches(pattern, ID3Tag.parse(entry.getValue(), entry.getKey())))
 							{
 								result.add(entry.getKey());
+								oos.writeObject(result);
 							}
 						}
 
-					}
-					else if (object instanceof Search && ((Search) object) == Search.CUSTOM)
+					} else if (object instanceof List)
+					{
+
+					} else if (object instanceof Search && ((Search) object) == Search.CUSTOM)
 					{
 
 					}
-					else if (object instanceof List)
-					{
 
-					}
-					else if (object instanceof Search && ((Search) object) == Search.GET)
-					{
-						oos.writeObject(result);
-					}
 				}
 			}
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}

@@ -35,8 +35,7 @@ public class Client
 			Client.socket = new Socket(host, port);
 			Client.oos = new ObjectOutputStream(socket.getOutputStream());
 			Client.ois = new ObjectInputStream(socket.getInputStream());
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -58,8 +57,7 @@ public class Client
 				}
 				fileHandler.close();
 				return buffer;
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				e.printStackTrace();
 			}
@@ -116,6 +114,17 @@ public class Client
 
 			// Step 5: choose an option: default or custom search
 			send(oos, Search.DEFAULT);
+			try
+			{
+				List<File> result = (List<File>) ois.readObject();
+				for (File file : result)
+				{
+					System.out.println(file);
+				}
+			} catch (ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
 
 			// or
 			// send(oos, Search.CUSTOM);
@@ -133,20 +142,6 @@ public class Client
 			// Step 5.2: send your criteria in case of custom search
 			// send(oos, criteria);
 
-			// Step 6: send a command to get your result(s)
-			send(oos, Search.GET);
-			try
-			{
-				List<File> result = (List<File>) ois.readObject();
-				for (File file : result)
-				{
-					System.out.println(file);
-				}
-			}
-			catch (ClassNotFoundException e)
-			{
-				e.printStackTrace();
-			}
 			socket.close();
 
 		}
