@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class MatcherServer
 	private static Map<File, byte[]> hashMap = new HashMap<File, byte[]>();
 	String pattern;
 	private static List<File> result = new ArrayList<File>();
-	private static List<Boolean> list = new ArrayList<Boolean>(Arrays.asList(new Boolean[7]));
+	private static boolean[] list = new boolean[7];
 
 	MatcherServer()
 	{
@@ -41,10 +40,14 @@ public class MatcherServer
 					if (object instanceof Map)
 					{
 						hashMap = (Map<File, byte[]>) object;
-					} else if (object instanceof String)
+					}
+
+					else if (object instanceof String)
 					{
 						pattern = (String) object;
-					} else if (object instanceof Search && ((Search) object) == Search.DEFAULT)
+					}
+
+					else if (object instanceof Search && ((Search) object) == Search.DEFAULT)
 					{
 						for (Entry<File, byte[]> entry : hashMap.entrySet())
 						{
@@ -55,11 +58,16 @@ public class MatcherServer
 							}
 						}
 
-					} else if (object instanceof List)
-					{
-						list = (List<Boolean>) object;
+					}
 
-					} else if (object instanceof Search && ((Search) object) == Search.CUSTOM)
+					else if (object instanceof boolean[])
+					{
+
+						list = (boolean[]) object;
+
+					}
+
+					else if (object instanceof Search && ((Search) object) == Search.CUSTOM)
 					{
 						for (Boolean criteria : list)
 						{
@@ -68,10 +76,8 @@ public class MatcherServer
 
 						}
 					}
-
 				}
 			}
-
 		} catch (Exception e)
 		{
 			e.printStackTrace();

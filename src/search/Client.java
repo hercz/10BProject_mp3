@@ -110,8 +110,9 @@ public class Client
 
 			// Step 4: Send your search criterium
 			send(oos, "Happy");
-			//
-			// // Step 5: choose an option: default or custom search
+
+			// Step 5: choose an option: default or custom search
+			// 5.1 DEFAULT SEARCH
 			// send(oos, Search.DEFAULT);
 			// try
 			// {
@@ -125,10 +126,8 @@ public class Client
 			// e.printStackTrace();
 			// }
 
-			// or
-			send(oos, Search.CUSTOM);
-
-			// Step 5.1: if custom search, fill the list with boolean values
+			// Step 5.2: CUSTOM SEARCH
+			// if custom search, fill the list with boolean values
 			boolean[] criteria = new boolean[7];
 			criteria[0] = false; // Name
 			criteria[1] = true; // Title
@@ -138,8 +137,11 @@ public class Client
 			criteria[5] = false; // Comment
 			criteria[6] = false; // Genre
 
-			// Step 5.2: send your criteria in case of custom search
+			// send your criteria in case of custom search
 			send(oos, criteria);
+
+			// mode
+			send(oos, Search.CUSTOM);
 
 			socket.close();
 
