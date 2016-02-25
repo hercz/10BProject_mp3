@@ -140,12 +140,16 @@ public class Client
 			// criteria[6] = false; // Genre
 
 			Set<ID3TagProperty> criteriaSet = new HashSet<>();
-			criteriaSet.add(ID3TagProperty.ALBUM);
-			criteriaSet.add(ID3TagProperty.ARTIST);
 			criteriaSet.add(ID3TagProperty.FILENAME);
+			criteriaSet.add(ID3TagProperty.TITLE);
+			criteriaSet.add(ID3TagProperty.ARTIST);
+			criteriaSet.add(ID3TagProperty.ALBUM);
+			criteriaSet.add(ID3TagProperty.YEAR);
+			criteriaSet.add(ID3TagProperty.GENRE);
+			criteriaSet.add(ID3TagProperty.COMMENT);
 
 			// send your criteria in case of custom search
-			send(oos, criteria);
+			send(oos, criteriaSet);
 
 			// mode
 			send(oos, Search.CUSTOM);
