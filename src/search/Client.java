@@ -8,7 +8,9 @@ import java.io.RandomAccessFile;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Client
 {
@@ -128,14 +130,19 @@ public class Client
 
 			// Step 5.2: CUSTOM SEARCH
 			// if custom search, fill the list with boolean values
-			boolean[] criteria = new boolean[7];
-			criteria[0] = true; // Name
-			criteria[1] = false; // Title
-			criteria[2] = false; // Artist
-			criteria[3] = false; // Album
-			criteria[4] = false; // Year
-			criteria[5] = true; // Comment
-			criteria[6] = false; // Genre
+			// boolean[] criteria = new boolean[7];
+			// criteria[0] = true; // Name
+			// criteria[1] = false; // Title
+			// criteria[2] = false; // Artist
+			// criteria[3] = false; // Album
+			// criteria[4] = false; // Year
+			// criteria[5] = true; // Comment
+			// criteria[6] = false; // Genre
+
+			Set<ID3TagProperty> criteriaSet = new HashSet<>();
+			criteriaSet.add(ID3TagProperty.ALBUM);
+			criteriaSet.add(ID3TagProperty.ARTIST);
+			criteriaSet.add(ID3TagProperty.FILENAME);
 
 			// send your criteria in case of custom search
 			send(oos, criteria);

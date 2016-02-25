@@ -6,19 +6,17 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Set;
 
 public class MatcherServer {
-	private static Map<File, byte[]> hashMap = new HashMap<File, byte[]>();
+	private Map<File, ID3Tag> hashMap;
 	String pattern;
-	private static List<File> result = new ArrayList<File>();
-	private static boolean[] list = new boolean[7];
+
 
 	MatcherServer() {
-		Searcher searcher = new Searcher();
+		Searcher searcher;
 		try {
 			ServerSocket serverSocket = new ServerSocket(1234);
 			System.out.println("Server started...");
@@ -33,43 +31,23 @@ public class MatcherServer {
 					Object object = ois.readObject();
 
 					if (object instanceof Map) {
-						hashMap = (Map<File, byte[]>) object;
+						hashMap = (Map<File, ID3Tag>) object;
 					}
 
 					else if (object instanceof String) {
 						pattern = (String) object;
 					}
 
-					else if (object instanceof Search && ((Search) object) == Search.DEFAULT) {
-						for (Entry<File, byte[]> entry : hashMap.entrySet()) {
-							if (searcher.matches(pattern, ID3Tag.parse(entry.getValue(), entry.getKey()))) {
-								result.add(entry.getKey());
-								oos.writeObject(result);
+					else if (object instanceof Set) {
+						searcher = new Searcher((Set<ID3TagProperty>) object);
+						List<File> result = new ArrayList<File>();
+						for (File file : hashMap.keySet()) {
+							ID3Tag tag = hashMap.get(file);
+							if (searcher.matches(pattern, tag)) {
+								result.add(file);
 							}
 						}
-
-					}
-
-					else if (object instanceof boolean[]) {
-
-						list = (boolean[]) object;
-						int k = 0;
-						for (int i = 0; i < list.length; i++) {
-							if (list[i] == false) {
-								searcher.deleteMatcherListElement(k);
-							}
-							if (list[i] == true) {
-								k += 1;
-							}
-						}
-					}
-
-					else if (object instanceof Search && ((Search) object) == Search.CUSTOM) {
-						for (Boolean criteria : list) {
-
-							System.out.println(criteria);
-
-						}
+						oos.writeObject(result);
 					}
 				}
 			}
