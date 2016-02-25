@@ -28,12 +28,11 @@ public class ID3Tag implements Serializable
 		return resultArray;
 	}
 
-	public static ID3Tag parse(byte[] tail, File file)
+	public static ID3Tag parse(File file)
 	{
 		new Genre();
 
-		// byte[] last128 = tail(file);
-		byte[] last128 = tail;
+		byte[] last128 = tail(file);
 
 		byte[] baTitle = readXBytes(last128, 3, 33);
 		byte[] baArtist = readXBytes(last128, 33, 63);

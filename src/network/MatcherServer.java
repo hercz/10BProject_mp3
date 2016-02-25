@@ -18,7 +18,6 @@ public class MatcherServer {
 	private Map<File, ID3Tag> hashMap;
 	String pattern;
 
-
 	MatcherServer() {
 		Searcher searcher;
 		try {
@@ -31,7 +30,7 @@ public class MatcherServer {
 			ObjectOutputStream oos = new ObjectOutputStream(server.getOutputStream());
 
 			while (true) {
-				if (ois.read() > -1) {
+				if (ois.read() != -1) {
 					Object object = ois.readObject();
 
 					if (object instanceof Map) {
@@ -52,9 +51,19 @@ public class MatcherServer {
 							}
 						}
 						oos.writeObject(result);
+						String counter = String.format("Count: %d", result.size());
+						oos.writeObject(counter);
+
+					}
+					else if (object instanceof Commands && (Commands) object == Commands.EXIT) {
+						break;
 					}
 				}
 			}
+			System.out.println("Server closed!!");
+			ois.close();
+			oos.close();
+			server.close();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -8,14 +8,14 @@ import java.util.Set;
 
 import matchers.AlbumMatcher;
 import matchers.ArtistMatcher;
+import matchers.CommentMatcher;
 import matchers.FileNameMatcher;
 import matchers.GenreMatcher;
 import matchers.Matcher;
 import matchers.TitleMatcher;
 import matchers.YearMatcher;
 
-public class Searcher
-{
+public class Searcher {
 	private List<Matcher> matcherList = new ArrayList<Matcher>();
 
 	static Map<ID3TagProperty, Matcher> matcherMap = new HashMap<>();
@@ -28,6 +28,7 @@ public class Searcher
 		matcherMap.put(ID3TagProperty.ALBUM, new AlbumMatcher());
 		matcherMap.put(ID3TagProperty.YEAR, new YearMatcher());
 		matcherMap.put(ID3TagProperty.GENRE, new GenreMatcher());
+		matcherMap.put(ID3TagProperty.COMMENT, new CommentMatcher());
 	}
 
 	public Searcher(Set<ID3TagProperty> criteriaSet) {
@@ -43,25 +44,21 @@ public class Searcher
 			}
 		}
 	}
-	public boolean matches(String pattern, ID3Tag tag)
-	{
-		for (Matcher matcher : matcherList)
-		{
-			if (matcher.matches(pattern, tag))
-			{
+
+	public boolean matches(String pattern, ID3Tag tag) {
+		for (Matcher matcher : matcherList) {
+			if (matcher.matches(pattern, tag)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public List<Matcher> getMatcherList()
-	{
+	public List<Matcher> getMatcherList() {
 		return matcherList;
 	}
 
-	public int getMatcherListSize()
-	{
+	public int getMatcherListSize() {
 		return matcherList.size();
 	}
 }
