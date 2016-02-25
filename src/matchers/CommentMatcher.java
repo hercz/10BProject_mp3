@@ -1,4 +1,6 @@
-package search;
+package matchers;
+
+import search.ID3Tag;
 
 public class CommentMatcher implements Matcher
 {

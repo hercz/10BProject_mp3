@@ -1,4 +1,4 @@
-package search;
+package network;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import search.ID3TagProperty;
 
 public class Client
 {
@@ -150,9 +152,6 @@ public class Client
 
 			// send your criteria in case of custom search
 			send(oos, criteriaSet);
-
-			// mode
-			send(oos, Search.CUSTOM);
 
 			socket.close();
 

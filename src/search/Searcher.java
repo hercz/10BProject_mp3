@@ -6,6 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import matchers.AlbumMatcher;
+import matchers.ArtistMatcher;
+import matchers.FileNameMatcher;
+import matchers.GenreMatcher;
+import matchers.Matcher;
+import matchers.TitleMatcher;
+import matchers.YearMatcher;
+
 public class Searcher
 {
 	private List<Matcher> matcherList = new ArrayList<Matcher>();

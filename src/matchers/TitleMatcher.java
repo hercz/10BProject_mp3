@@ -1,4 +1,6 @@
-package search;
+package matchers;
+
+import search.ID3Tag;
 
 public class TitleMatcher implements Matcher
 {

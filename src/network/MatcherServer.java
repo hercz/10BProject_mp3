@@ -1,4 +1,4 @@
-package search;
+package network;
 
 import java.io.File;
 import java.io.ObjectInputStream;
@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import search.ID3Tag;
+import search.ID3TagProperty;
+import search.Searcher;
 
 public class MatcherServer {
 	private Map<File, ID3Tag> hashMap;

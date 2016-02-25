@@ -1,4 +1,4 @@
-package search;
+package network;
 
 public enum Commands
 {
