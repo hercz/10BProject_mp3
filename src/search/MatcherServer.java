@@ -11,18 +11,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class MatcherServer
-{
+public class MatcherServer {
 	private static Map<File, byte[]> hashMap = new HashMap<File, byte[]>();
 	String pattern;
 	private static List<File> result = new ArrayList<File>();
 	private static boolean[] list = new boolean[7];
 
-	MatcherServer()
-	{
+	MatcherServer() {
 		Searcher searcher = new Searcher();
-		try
-		{
+		try {
 			ServerSocket serverSocket = new ServerSocket(1234);
 			System.out.println("Server started...");
 			Socket server = serverSocket.accept();
@@ -31,28 +28,21 @@ public class MatcherServer
 			ObjectInputStream ois = new ObjectInputStream(server.getInputStream());
 			ObjectOutputStream oos = new ObjectOutputStream(server.getOutputStream());
 
-			while (true)
-			{
-				if (ois.read() > -1)
-				{
+			while (true) {
+				if (ois.read() > -1) {
 					Object object = ois.readObject();
 
-					if (object instanceof Map)
-					{
+					if (object instanceof Map) {
 						hashMap = (Map<File, byte[]>) object;
 					}
 
-					else if (object instanceof String)
-					{
+					else if (object instanceof String) {
 						pattern = (String) object;
 					}
 
-					else if (object instanceof Search && ((Search) object) == Search.DEFAULT)
-					{
-						for (Entry<File, byte[]> entry : hashMap.entrySet())
-						{
-							if (searcher.matches(pattern, ID3Tag.parse(entry.getValue(), entry.getKey())))
-							{
+					else if (object instanceof Search && ((Search) object) == Search.DEFAULT) {
+						for (Entry<File, byte[]> entry : hashMap.entrySet()) {
+							if (searcher.matches(pattern, ID3Tag.parse(entry.getValue(), entry.getKey()))) {
 								result.add(entry.getKey());
 								oos.writeObject(result);
 							}
@@ -60,17 +50,24 @@ public class MatcherServer
 
 					}
 
-					else if (object instanceof boolean[])
-					{
+					else if (object instanceof boolean[]) {
 
 						list = (boolean[]) object;
+						int j = list.length;
+						for (int i = 0; i < j; ++i) {
+							if (list[i] == false) {
+								searcher.deleteMatcherListElement(i);
+								j--;
+								i--;
+							}
+							else if (list[i] == true) {
+									++i;
+								}
+							}
+						}
 
-					}
-
-					else if (object instanceof Search && ((Search) object) == Search.CUSTOM)
-					{
-						for (Boolean criteria : list)
-						{
+					else if (object instanceof Search && ((Search) object) == Search.CUSTOM) {
+						for (Boolean criteria : list) {
 
 							System.out.println(criteria);
 
@@ -78,15 +75,14 @@ public class MatcherServer
 					}
 				}
 			}
-		} catch (Exception e)
-		{
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		new MatcherServer();
 	}
 }
