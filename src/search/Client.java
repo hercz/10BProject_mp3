@@ -129,12 +129,12 @@ public class Client
 			// Step 5.2: CUSTOM SEARCH
 			// if custom search, fill the list with boolean values
 			boolean[] criteria = new boolean[7];
-			criteria[0] = false; // Name
-			criteria[1] = true; // Title
+			criteria[0] = true; // Name
+			criteria[1] = false; // Title
 			criteria[2] = false; // Artist
 			criteria[3] = false; // Album
 			criteria[4] = false; // Year
-			criteria[5] = false; // Comment
+			criteria[5] = true; // Comment
 			criteria[6] = false; // Genre
 
 			// send your criteria in case of custom search

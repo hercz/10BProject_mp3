@@ -53,18 +53,16 @@ public class MatcherServer {
 					else if (object instanceof boolean[]) {
 
 						list = (boolean[]) object;
-						int j = list.length;
-						for (int i = 0; i < j; ++i) {
+						int k = 0;
+						for (int i = 0; i < list.length; i++) {
 							if (list[i] == false) {
-								searcher.deleteMatcherListElement(i);
-								j--;
-								i--;
+								searcher.deleteMatcherListElement(k);
 							}
-							else if (list[i] == true) {
-									++i;
-								}
+							if (list[i] == true) {
+								k += 1;
 							}
 						}
+					}
 
 					else if (object instanceof Search && ((Search) object) == Search.CUSTOM) {
 						for (Boolean criteria : list) {
