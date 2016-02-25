@@ -8,7 +8,6 @@ import java.io.RandomAccessFile;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Client
@@ -110,29 +109,29 @@ public class Client
 			send(oos, hashMap);
 
 			// Step 4: Send your search criterium
-			send(oos, "5");
-
-			// Step 5: choose an option: default or custom search
-			send(oos, Search.DEFAULT);
-			try
-			{
-				List<File> result = (List<File>) ois.readObject();
-				for (File file : result)
-				{
-					System.out.println(file);
-				}
-			} catch (ClassNotFoundException e)
-			{
-				e.printStackTrace();
-			}
+			send(oos, "Happy");
+			//
+			// // Step 5: choose an option: default or custom search
+			// send(oos, Search.DEFAULT);
+			// try
+			// {
+			// List<File> result = (List<File>) ois.readObject();
+			// for (File file : result)
+			// {
+			// System.out.println(file);
+			// }
+			// } catch (ClassNotFoundException e)
+			// {
+			// e.printStackTrace();
+			// }
 
 			// or
-			// send(oos, Search.CUSTOM);
+			send(oos, Search.CUSTOM);
 
 			// Step 5.1: if custom search, fill the list with boolean values
 			boolean[] criteria = new boolean[7];
 			criteria[0] = false; // Name
-			criteria[1] = false; // Title
+			criteria[1] = true; // Title
 			criteria[2] = false; // Artist
 			criteria[3] = false; // Album
 			criteria[4] = false; // Year
@@ -140,7 +139,7 @@ public class Client
 			criteria[6] = false; // Genre
 
 			// Step 5.2: send your criteria in case of custom search
-			// send(oos, criteria);
+			send(oos, criteria);
 
 			socket.close();
 
